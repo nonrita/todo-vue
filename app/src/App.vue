@@ -1,15 +1,18 @@
 <script>
-import Header from "./components/Header";
+import Header from "./components/MainHeader";
+import Main from "./components/MainArea.vue"
 
 export default {
   components: {
     Header,
+    Main,
   },
 };
 </script>
 
 <template>
   <Header />
+  <Main />
 </template>
 
 <style>
@@ -79,5 +82,11 @@ textarea:not([rows]) {
 }
 :target {
   scroll-margin-block: 5ex;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>
