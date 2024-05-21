@@ -8,7 +8,6 @@
 
 <style>
 header {
-  outline: 1px solid plum;
   background-color: #000;
   padding-left: 1em;
   h1 {
