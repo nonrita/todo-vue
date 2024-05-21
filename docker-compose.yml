@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+    app:
+      container_name: front
+      image: node:20
+      working_dir: /usr/src/app
+      tty: true
+      ports:
+      - '80:8080'
+      volumes:
+        - ./:/usr/src/app
+      networks:
+        - todo-api_todo-network
+
+networks:
+    todo-api_todo-network:
+      external: true
