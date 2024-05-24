@@ -1,8 +1,28 @@
-<script></script>
+<script setup >
+import { ref } from 'vue'
+
+let id = 0
+
+const newTodo = ref('')
+const todos = ref([
+  { id: id++, text: 'Learn HTML', done: true },
+  { id: id++, text: 'Learn JavaScript', done: true },
+  { id: id++, text: 'Learn Vue', done: false }
+])
+
+function addTodo() {
+  todos.value.push({ id: id++, text: newTodo.value, done: false })
+  newTodo.value = ''
+}
+
+function removeTodo(todo) {
+  todos.value = todos.value.filter((t) => t !== todo)
+}
+</script>
 
 <template>
   <main>
-    <form class="todo-input-area">
+    <form class="todo-input-area" @submit.prevent="addTodo">
       <input
         class="todo-input"
         type="text"
@@ -10,38 +30,19 @@
         maxlength="32"
         required
         placeholder="Please enter new Todo"
+        v-model="newTodo"
       />
-      <button class="add-button"><fa icon="add" /></button>
+      <button class="add-button"><FontAwesome icon="add" /></button>
     </form>
 
     <ul class="todo-list">
-      <li class="todo-item">
+      <li class="todo-item" v-for="todo in todos" :key="todo.id">
         <div class="todo-item-left">
-          <input type="checkbox" name="i" id="">
-          <h1>Reactの勉強</h1>
+          <input type="checkbox" v-model="todo.done">
+          <h1 :class="{ done: todo.done }">{{ todo.text }}</h1>
         </div>
         <div class="todo-item-right">
-          <button><fa class="icon" icon="trash" /></button>
-        </div>
-      </li>
-
-      <li class="todo-item">
-        <div class="todo-item-left">
-          <input type="checkbox" name="i" id="">
-          <h1>Reactの勉強</h1>
-        </div>
-        <div class="todo-item-right">
-          <button><fa class="icon" icon="trash" /></button>
-        </div>
-      </li>
-
-      <li class="todo-item">
-        <div class="todo-item-left">
-          <input type="checkbox" name="i" id="">
-          <h1>Reactの勉強</h1>
-        </div>
-        <div class="todo-item-right">
-          <button><fa class="icon" icon="trash" /></button>
+          <button @click="removeTodo(todo)"><FontAwesome class="trash-icon" icon="trash" /></button>
         </div>
       </li>
     </ul>
@@ -92,6 +93,9 @@ main {
         height: fit-content;
         h1 {
           font-size: 1.5rem;
+        }
+        .done {
+          text-decoration: line-through;
         }
       }
       .todo-item-right {
