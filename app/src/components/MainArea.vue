@@ -21,11 +21,10 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 24px 20% 0 20%;
   .todo-input-area {
-    width: fit-content;
     display: flex;
+    justify-content: center;
     gap: 16px;
     .todo-input {
       height: fit-content;
