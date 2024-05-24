@@ -7,5 +7,5 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faAdd, faTrash)
 
 var app = createApp(App)
-app.component('fa', FontAwesomeIcon )
+app.component('FontAwesome', FontAwesomeIcon )
 app.mount('#app')
